@@ -3,60 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahxan Mods - Redirecting...</title>
+    <meta name="description" content="Ahxanmods - Game Hub with amazing games and mods. Play online games, download mods, and explore gaming content.">
+    <meta name="keywords" content="Ahxanmods, game hub, mods, gaming, online games, play games">
+    <meta name="author" content="Ahxanmods">
+    <meta property="og:title" content="Ahxanmods - Game Hub">
+    <meta property="og:description" content="Welcome to Ahxanmods Game Hub - Your destination for amazing games and mods">
+    <meta property="og:url" content="https://ahxanmods.github.io">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ahxanmods - Game Hub">
+    <meta name="twitter:description" content="Welcome to Ahxanmods Game Hub">
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="">
+    
+    <title>Ahxanmods - Game Hub | Play Games & Download Mods</title>
+    
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
         }
+        
         .container {
             text-align: center;
             background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
         }
+        
         h1 {
-            color: #333;
-            margin: 0;
+            color: #667eea;
+            margin: 0 0 10px 0;
+            font-size: 48px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        p {
+        
+        .tagline {
             color: #666;
-            margin: 10px 0;
+            font-size: 18px;
+            margin: 10px 0 30px 0;
+            font-weight: 500;
         }
+        
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 30px auto;
         }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        .status {
+            color: #666;
+            font-size: 16px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .container {
+                padding: 40px 20px;
+            }
+        }
     </style>
+    
     <script>
-        // Redirect to Replit app after 2 seconds
+        // Redirect to Replit app after 3 seconds
         setTimeout(function() {
             window.location.href = "https://ahxanmods-game-hub--tecnicalrexo.replit.app/";
-        }, 2000);
+        }, 3000);
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Ahxan Mods</h1>
-        <p>Aapka Game Hub app load ho raha hai...</p>
+        <h1>🎮 Ahxanmods</h1>
+        <p class="tagline">Game Hub - Play & Download Mods</p>
+        
         <div class="spinner"></div>
-        <p style="font-size: 12px; color: #999;">Agar automatically redirect nahi hota, toh <a href="https://ahxanmods-game-hub--tecnicalrexo.replit.app/">yahan click karo</a></p>
+        
+        <div class="status">
+            <p>Aapka Game Hub load ho raha hai...</p>
+            <p style="font-size: 14px; color: #999;">Please wait, redirecting to the app...</p>
+        </div>
+        
+        <button class="button" onclick="window.location.href='https://ahxanmods-game-hub--tecnicalrexo.replit.app/'">
+            ⚡ Go to Game Hub Now
+        </button>
+        
+        <div class="footer">
+            <p>&copy; 2026 Ahxanmods. All rights reserved.</p>
+            <p>Powered by Replit | Hosted on GitHub Pages</p>
+        </div>
     </div>
+    
+    <!-- Schema.org structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ahxanmods Game Hub",
+        "description": "Game Hub with amazing games and mods",
+        "url": "https://ahxanmods.github.io",
+        "applicationCategory": "GameApplication",
+        "author": {
+            "@type": "Person",
+            "name": "Ahxanmods"
+        }
+    }
+    </script>
 </body>
 </html>
