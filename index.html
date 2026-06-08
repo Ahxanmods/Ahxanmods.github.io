@@ -315,11 +315,12 @@
         </div>
     </div>
     
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration & Auto-Redirect Logic -->
     <script>
         const installBtn = document.getElementById('installBtn');
         const websiteBtn = document.getElementById('websiteBtn');
         const statusMessage = document.getElementById('statusMessage');
+        const container = document.querySelector('.container');
         let deferredPrompt = null;
         
         // Show status message
@@ -329,6 +330,37 @@
             setTimeout(() => {
                 statusMessage.classList.remove('show');
             }, 3000);
+        }
+        
+        // Check if app is already installed (running as PWA)
+        function checkIfAppInstalled() {
+            // Check if running as standalone PWA
+            if (window.navigator.standalone === true) {
+                console.log('📱 App already installed - Running as PWA');
+                autoRedirectToWebsite();
+                return true;
+            }
+            
+            // Check localStorage for app installed flag
+            if (localStorage.getItem('ahxanmods-app-installed') === 'true') {
+                console.log('📱 App already installed - Redirecting');
+                autoRedirectToWebsite();
+                return true;
+            }
+            
+            return false;
+        }
+        
+        // Auto redirect to website
+        function autoRedirectToWebsite() {
+            container.style.opacity = '0.7';
+            const spinner = document.querySelector('.loading-spinner');
+            const loadingText = document.querySelector('.loading-text');
+            loadingText.textContent = 'App already installed! Redirecting to Game Hub...';
+            
+            setTimeout(() => {
+                window.location.href = 'https://ahxanmods-game-hub--tecnicalrexo.replit.app/';
+            }, 1500);
         }
         
         // Website button - redirect to game hub
@@ -364,8 +396,15 @@
                     
                     if (outcome === 'accepted') {
                         showStatus('🎉 Ahxanmods installed successfully!', 'success');
+                        // Store installation flag
+                        localStorage.setItem('ahxanmods-app-installed', 'true');
                         installBtn.disabled = true;
                         installBtn.textContent = '✓ Installed';
+                        
+                        // Redirect after 2 seconds
+                        setTimeout(() => {
+                            autoRedirectToWebsite();
+                        }, 2000);
                     } else {
                         showStatus('Installation cancelled', 'error');
                     }
@@ -382,16 +421,24 @@
         // App installed event
         window.addEventListener('appinstalled', () => {
             console.log('🎊 App installed!');
-            showStatus('🎊 App installed! Check your home screen', 'success');
+            localStorage.setItem('ahxanmods-app-installed', 'true');
+            showStatus('🎊 App installed! Redirecting...', 'success');
             installBtn.disabled = true;
-            installBtn.textContent = '✓ Already Installed';
+            installBtn.textContent = '✓ Installed';
+            
+            // Auto redirect after 1.5 seconds
+            setTimeout(() => {
+                autoRedirectToWebsite();
+            }, 1500);
         });
         
-        // Check if already installed (PWA running standalone)
-        if (window.navigator.standalone === true) {
-            installBtn.disabled = true;
-            installBtn.textContent = '✓ Running as App';
-        }
+        // Check on page load if app is already installed
+        window.addEventListener('load', () => {
+            checkIfAppInstalled();
+        });
+        
+        // Also check immediately
+        checkIfAppInstalled();
     </script>
 </body>
 </html>
