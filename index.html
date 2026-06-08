@@ -3,28 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="🚀 Experience Ahxanmods like never before. Install Ahxanmods on your device for faster access, smoother performance, and an app-like experience.">
+    <meta name="description" content="🚀 Ahxanmods - Game Hub. Play & Download Mods. Install on your device for app-like experience.">
     <meta name="keywords" content="Ahxanmods, game hub, mods, gaming, online games, play games, PWA, install app">
     <meta name="author" content="Ahxanmods">
-    <meta property="og:title" content="Ahxanmods - Game Hub">
-    <meta property="og:description" content="Download Ahxanmods - Choose how you want to use Ahxanmods">
-    <meta property="og:url" content="https://ahxanmods.github.io">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ahxanmods - Game Hub">
-    <meta name="twitter:description" content="Install Ahxanmods for app-like experience">
-    
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#667eea">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Ahxanmods">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='96' y='120' font-size='80' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>🎮</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23667eea' width='180' height='180'/><text x='90' y='110' font-size='70' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>🎮</text></svg>">
     
-    <title>Get Ahxanmods - Download or Use Online</title>
+    <title>Ahxanmods - Download & Install</title>
     
     <style>
         * {
@@ -40,8 +28,7 @@
             --card-bg: #1a1f3a;
             --text-primary: #ffffff;
             --text-secondary: #b0b8d4;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
+            --light-bg: #f0f4ff;
         }
         
         body {
@@ -53,234 +40,179 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 900px;
-            width: 100%;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: slideDown 0.6s ease;
-        }
-        
-        .logo {
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
-        }
-        
-        .title {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-        
-        .description {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 50px;
-            animation: slideUp 0.6s ease 0.2s both;
-        }
-        
-        .option-card {
-            background: var(--card-bg);
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
             overflow: hidden;
         }
         
-        .option-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-        }
-        
-        .option-card::before {
-            content: '';
-            position: absolute;
+        .gradient-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.4;
+            z-index: -1;
         }
         
-        .option-card:hover::before {
-            opacity: 1;
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 30px;
+            padding: 50px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.6s ease;
+            color: #333;
         }
         
-        .option-icon {
-            font-size: 60px;
+        .logo-container {
             margin-bottom: 20px;
-            display: inline-block;
+            animation: bounce 2s infinite;
         }
         
-        .option-title {
-            font-size: 24px;
-            font-weight: 700;
+        .logo-icon {
+            font-size: 60px;
+            display: inline-block;
             margin-bottom: 15px;
         }
         
-        .option-description {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 25px;
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
         
-        .option-button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 15px 40px;
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f0f0f0;
+            border-top: 6px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 30px auto;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-text {
+            font-size: 14px;
+            color: #999;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 16px 32px;
             font-size: 16px;
             font-weight: 600;
-            border-radius: 12px;
+            border: none;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-        
-        .option-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
-        }
-        
-        .option-button:active {
-            transform: scale(0.98);
-        }
-        
-        .option-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .features {
-            background: var(--card-bg);
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            animation: slideUp 0.6s ease 0.4s both;
-        }
-        
-        .features-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .feature-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            justify-content: center;
+            gap: 10px;
         }
         
-        .feature-item:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateX(5px);
+        .btn-install {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
         
-        .feature-icon {
-            font-size: 28px;
-            min-width: 30px;
+        .btn-install:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
         }
         
-        .feature-text {
-            font-size: 16px;
-            font-weight: 600;
+        .btn-install:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-website {
+            background: #f0f0f0;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-website:hover {
+            background: #e8e8e8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-website:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .icon {
+            font-size: 20px;
         }
         
         .footer {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 12px;
+            color: #999;
             margin-top: 40px;
-            animation: slideUp 0.6s ease 0.6s both;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            line-height: 1.8;
+        }
+        
+        .footer-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
         }
         
         .status-message {
-            text-align: center;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            font-size: 14px;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
             display: none;
+            animation: slideDown 0.3s ease;
         }
         
-        .status-message.success {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-            border: 1px solid #10b981;
+        .status-message.show {
             display: block;
         }
         
-        .status-message.error {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-            border: 1px solid #ef4444;
-            display: block;
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
         
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         
         @keyframes slideUp {
@@ -294,221 +226,172 @@
             }
         }
         
-        @media (max-width: 768px) {
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 25px;
+                border-radius: 25px;
+            }
+            
             .title {
-                font-size: 32px;
+                font-size: 28px;
             }
             
             .subtitle {
-                font-size: 16px;
-            }
-            
-            .description {
                 font-size: 14px;
             }
             
-            .options {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .option-card {
-                padding: 30px 20px;
-            }
-            
-            .option-icon {
-                font-size: 48px;
-            }
-            
-            .option-title {
-                font-size: 20px;
+            .btn {
+                padding: 14px 28px;
+                font-size: 15px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="gradient-bg"></div>
+    
     <div class="container">
-        <div class="header">
-            <div class="logo">🎮 AHXANMODS</div>
-            <h1 class="title">Get Ahxanmods</h1>
-            <p class="subtitle">Choose how you want to use Ahxanmods</p>
-            <p class="description">
-                🚀 Experience Ahxanmods like never before. Install Ahxanmods on your device for faster access, smoother performance, and an app-like experience. Prefer not to install anything? Continue using the website version directly from your browser. Your choice, your way.
-            </p>
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <div class="logo-icon">🎮</div>
+            <h1 class="title">Ahxanmods</h1>
         </div>
         
+        <!-- Description -->
+        <p class="subtitle">
+            Game Hub - Play & Download Mods
+        </p>
+        
+        <!-- Loading Spinner -->
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Aapka Game Hub load ho raha hai...</div>
+        
+        <!-- Buttons -->
+        <div class="button-container">
+            <button class="btn btn-install" id="installBtn">
+                <span class="icon">⬇️</span>
+                <span>Install Now</span>
+            </button>
+            
+            <button class="btn btn-website" id="websiteBtn">
+                <span class="icon">🌐</span>
+                <span>Continue to Website</span>
+            </button>
+        </div>
+        
+        <!-- Status Message -->
         <div id="statusMessage" class="status-message"></div>
         
-        <div class="options">
-            <div class="option-card">
-                <div class="option-icon">📥</div>
-                <h2 class="option-title">Download Ahxanmods</h2>
-                <p class="option-description">
-                    Add Ahxanmods to your Home Screen and enjoy a fast, app-like experience with one-tap access.
-                </p>
-                <button class="option-button" id="installBtn">Install Now</button>
-            </div>
-            
-            <div class="option-card">
-                <div class="option-icon">🌐</div>
-                <h2 class="option-title">Use as Website</h2>
-                <p class="option-description">
-                    Open Ahxanmods directly in your browser without installing anything.
-                </p>
-                <button class="option-button" onclick="window.location.href='https://ahxanmods-game-hub--tecnicalrexo.replit.app/'">Open Website</button>
-            </div>
-        </div>
-        
-        <div class="features">
-            <h3 class="features-title">✨ Why Choose Ahxanmods?</h3>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <span class="feature-icon">⚡</span>
-                    <span class="feature-text">Fast Loading Experience</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🎮</span>
-                    <span class="feature-text">Easy Access to Games</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">📱</span>
-                    <span class="feature-text">Install on Home Screen</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🚀</span>
-                    <span class="feature-text">Modern Premium Interface</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🔄</span>
-                    <span class="feature-text">Regular Updates</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🛡️</span>
-                    <span class="feature-text">Secure & Reliable</span>
-                </div>
-            </div>
-        </div>
-        
+        <!-- Footer -->
         <div class="footer">
-            <p>© 2026 Ahxanmods. Unlock Premium Gaming Experience.</p>
+            <p>© 2026 Ahxanmods. All rights reserved.</p>
+            <p style="margin-top: 8px;">Powered by Replit | Hosted on GitHub Pages</p>
         </div>
     </div>
     
-    <!-- Schema.org structured data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Ahxanmods Game Hub",
-        "description": "Download Ahxanmods - Game Hub with amazing games and mods",
-        "url": "https://ahxanmods.github.io",
-        "applicationCategory": "GameApplication",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "Ahxanmods"
-        }
-    }
-    </script>
-    
-    <!-- Service Worker Registration & PWA Install Logic -->
+    <!-- Service Worker Registration -->
     <script>
-        let deferredPrompt = null;
-        const statusMessage = document.getElementById('statusMessage');
         const installBtn = document.getElementById('installBtn');
+        const websiteBtn = document.getElementById('websiteBtn');
+        const statusMessage = document.getElementById('statusMessage');
+        let deferredPrompt = null;
         
-        function showMessage(message, type) {
+        // Show status message
+        function showStatus(message, type = 'success') {
             statusMessage.textContent = message;
-            statusMessage.className = `status-message ${type}`;
+            statusMessage.className = `status-message show status-${type}`;
             setTimeout(() => {
-                statusMessage.className = 'status-message';
-            }, 4000);
+                statusMessage.classList.remove('show');
+            }, 3000);
         }
+        
+        // Website button - redirect to game hub
+        websiteBtn.addEventListener('click', () => {
+            window.location.href = 'https://ahxanmods-game-hub--tecnicalrexo.replit.app/';
+        });
         
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
-                .then(registration => {
-                    console.log('✅ Service Worker registered:', registration);
-                    showMessage('✅ Service Worker registered successfully!', 'success');
+                .then(reg => {
+                    console.log('✅ Service Worker registered');
                 })
-                .catch(error => {
-                    console.error('❌ Service Worker failed:', error);
-                    showMessage('⚠️ Service Worker registration failed', 'error');
+                .catch(err => {
+                    console.log('Service Worker error:', err);
                 });
-        } else {
-            console.warn('Service Workers not supported');
-            showMessage('⚠️ Service Workers not supported in this browser', 'error');
         }
         
-        // PWA beforeinstallprompt event
+        // Listen for beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('📥 beforeinstallprompt event fired');
             e.preventDefault();
             deferredPrompt = e;
-            installBtn.style.opacity = '1';
-            installBtn.style.pointerEvents = 'auto';
             installBtn.disabled = false;
-            showMessage('✅ Install ready! Click "Install Now" to add Ahxanmods to your home screen', 'success');
+            showStatus('✅ Install option available! Click "Install Now"', 'success');
         });
         
-        // Install button click handler
-        installBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            console.log('🎯 Install button clicked');
-            
+        // Install button click
+        installBtn.addEventListener('click', async () => {
             if (deferredPrompt) {
                 try {
                     deferredPrompt.prompt();
                     const { outcome } = await deferredPrompt.userChoice;
-                    console.log(`👤 User response: ${outcome}`);
                     
                     if (outcome === 'accepted') {
-                        showMessage('🎉 Ahxanmods installed successfully!', 'success');
+                        showStatus('🎉 Ahxanmods installed successfully!', 'success');
+                        installBtn.disabled = true;
+                        installBtn.textContent = '✓ Installed';
                     } else {
-                        showMessage('❌ Installation cancelled', 'error');
+                        showStatus('Installation cancelled', 'error');
                     }
                     
                     deferredPrompt = null;
                 } catch (error) {
-                    console.error('Error during install:', error);
-                    showMessage('❌ Installation error. Try again!', 'error');
+                    showStatus('❌ Installation failed', 'error');
                 }
             } else {
-                console.log('📱 No install prompt available');
-                showMessage('⚠️ Install option not available on your device/browser', 'error');
-                // Fallback: offer direct link
-                if (confirm('Would you like to open the Game Hub instead?')) {
-                    window.location.href = 'https://ahxanmods-game-hub--tecnicalrexo.replit.app/';
-                }
+                showStatus('⚠️ Install not available. Use "Continue to Website" instead', 'error');
             }
         });
         
         // App installed event
         window.addEventListener('appinstalled', () => {
-            console.log('🎊 PWA installed successfully');
-            showMessage('🎊 Ahxanmods app installed! Check your home screen', 'success');
-            deferredPrompt = null;
+            console.log('🎊 App installed!');
+            showStatus('🎊 App installed! Check your home screen', 'success');
             installBtn.disabled = true;
-            installBtn.textContent = 'Already Installed ✓';
+            installBtn.textContent = '✓ Already Installed';
         });
         
-        // Check if app is already installed
-        window.addEventListener('load', () => {
-            if (window.navigator.standalone === true) {
-                console.log('📱 Already running as PWA');
-                installBtn.disabled = true;
-                installBtn.textContent = 'Already Installed ✓';
-            }
-        });
+        // Check if already installed (PWA running standalone)
+        if (window.navigator.standalone === true) {
+            installBtn.disabled = true;
+            installBtn.textContent = '✓ Running as App';
+        }
     </script>
 </body>
 </html>
