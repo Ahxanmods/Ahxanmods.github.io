@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ahxanmods - Game Hub with amazing games and mods. Play online games, download mods, and explore gaming content.">
-    <meta name="keywords" content="Ahxanmods, game hub, mods, gaming, online games, play games">
+    <meta name="description" content="🚀 Experience Ahxanmods like never before. Install Ahxanmods on your device for faster access, smoother performance, and an app-like experience.">
+    <meta name="keywords" content="Ahxanmods, game hub, mods, gaming, online games, play games, PWA, install app">
     <meta name="author" content="Ahxanmods">
     <meta property="og:title" content="Ahxanmods - Game Hub">
-    <meta property="og:description" content="Welcome to Ahxanmods Game Hub - Your destination for amazing games and mods">
+    <meta property="og:description" content="Download Ahxanmods - Choose how you want to use Ahxanmods">
     <meta property="og:url" content="https://ahxanmods.github.io">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ahxanmods - Game Hub">
-    <meta name="twitter:description" content="Welcome to Ahxanmods Game Hub">
+    <meta name="twitter:description" content="Install Ahxanmods for app-like experience">
     
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Ahxanmods">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='96' y='120' font-size='80' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>🎮</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23667eea' width='180' height='180'/><text x='90' y='110' font-size='70' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>🎮</text></svg>">
     
-    <title>Ahxanmods - Game Hub | Play Games & Download Mods</title>
+    <title>Get Ahxanmods - Download or Use Online</title>
     
     <style>
         * {
@@ -26,127 +33,338 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #16213e 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
         }
         
         .container {
-            text-align: center;
-            background: white;
-            padding: 50px 40px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 900px;
             width: 100%;
         }
         
-        h1 {
-            color: #667eea;
-            margin: 0 0 10px 0;
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.6s ease;
+        }
+        
+        .logo {
             font-size: 48px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
         }
         
-        .tagline {
-            color: #666;
-            font-size: 18px;
-            margin: 10px 0 30px 0;
-            font-weight: 500;
-        }
-        
-        .spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 30px auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .status {
-            color: #666;
-            font-size: 16px;
-            margin: 20px 0;
-            line-height: 1.6;
-        }
-        
-        .button {
-            display: inline-block;
+        .title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-top: 20px;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+            animation: slideUp 0.6s ease 0.2s both;
+        }
+        
+        .option-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .option-card:hover::before {
+            opacity: 1;
+        }
+        
+        .option-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .option-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .option-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .option-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .option-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+        
+        .option-button:active {
+            transform: scale(0.98);
+        }
+        
+        .features {
+            background: var(--card-bg);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            animation: slideUp 0.6s ease 0.4s both;
+        }
+        
+        .features-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .feature-icon {
+            font-size: 28px;
+            min-width: 30px;
+        }
+        
+        .feature-text {
+            font-size: 16px;
+            font-weight: 600;
         }
         
         .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 12px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 40px;
+            animation: slideUp 0.6s ease 0.6s both;
         }
         
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 36px;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 32px;
             }
             
-            .container {
-                padding: 40px 20px;
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .description {
+                font-size: 14px;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .option-card {
+                padding: 30px 20px;
+            }
+            
+            .option-icon {
+                font-size: 48px;
+            }
+            
+            .option-title {
+                font-size: 20px;
             }
         }
     </style>
-    
-    <script>
-        // Redirect to Replit app after 3 seconds
-        setTimeout(function() {
-            window.location.href = "https://ahxanmods-game-hub--tecnicalrexo.replit.app/";
-        }, 3000);
-    </script>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Ahxanmods</h1>
-        <p class="tagline">Game Hub - Play & Download Mods</p>
-        
-        <div class="spinner"></div>
-        
-        <div class="status">
-            <p>Aapka Game Hub load ho raha hai...</p>
-            <p style="font-size: 14px; color: #999;">Please wait, redirecting to the app...</p>
+        <div class="header">
+            <div class="logo">🎮 AHXANMODS</div>
+            <h1 class="title">Get Ahxanmods</h1>
+            <p class="subtitle">Choose how you want to use Ahxanmods</p>
+            <p class="description">
+                🚀 Experience Ahxanmods like never before. Install Ahxanmods on your device for faster access, smoother performance, and an app-like experience. Prefer not to install anything? Continue using the website version directly from your browser. Your choice, your way.
+            </p>
         </div>
         
-        <button class="button" onclick="window.location.href='https://ahxanmods-game-hub--tecnicalrexo.replit.app/'">
-            ⚡ Go to Game Hub Now
-        </button>
+        <div class="options">
+            <div class="option-card">
+                <div class="option-icon">📥</div>
+                <h2 class="option-title">Download Ahxanmods</h2>
+                <p class="option-description">
+                    Add Ahxanmods to your Home Screen and enjoy a fast, app-like experience with one-tap access.
+                </p>
+                <button class="option-button" id="installBtn">Install Now</button>
+            </div>
+            
+            <div class="option-card">
+                <div class="option-icon">🌐</div>
+                <h2 class="option-title">Use as Website</h2>
+                <p class="option-description">
+                    Open Ahxanmods directly in your browser without installing anything.
+                </p>
+                <button class="option-button" onclick="window.location.href='https://ahxanmods-game-hub--tecnicalrexo.replit.app/'">Open Website</button>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h3 class="features-title">✨ Why Choose Ahxanmods?</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <span class="feature-text">Fast Loading Experience</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎮</span>
+                    <span class="feature-text">Easy Access to Games</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <span class="feature-text">Install on Home Screen</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🚀</span>
+                    <span class="feature-text">Modern Premium Interface</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔄</span>
+                    <span class="feature-text">Regular Updates</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🛡️</span>
+                    <span class="feature-text">Secure & Reliable</span>
+                </div>
+            </div>
+        </div>
         
         <div class="footer">
-            <p>&copy; 2026 Ahxanmods. All rights reserved.</p>
-            <p>Powered by Replit | Hosted on GitHub Pages</p>
+            <p>© 2026 Ahxanmods. Unlock Premium Gaming Experience.</p>
         </div>
     </div>
     
@@ -156,14 +374,59 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Ahxanmods Game Hub",
-        "description": "Game Hub with amazing games and mods",
+        "description": "Download Ahxanmods - Game Hub with amazing games and mods",
         "url": "https://ahxanmods.github.io",
         "applicationCategory": "GameApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
         "author": {
             "@type": "Person",
             "name": "Ahxanmods"
         }
     }
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        let deferredPrompt;
+        
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+        
+        // PWA Installation Prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.style.display = 'block';
+                installBtn.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log(`User response to the install prompt: ${outcome}`);
+                        deferredPrompt = null;
+                    }
+                });
+            }
+        });
+        
+        // Handle app installed event
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+            deferredPrompt = null;
+        });
     </script>
 </body>
 </html>
