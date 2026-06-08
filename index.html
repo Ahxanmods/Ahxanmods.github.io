@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Ahxanmods">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='96' y='120' font-size='80' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>🎮</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23667eea' width='180' height='180'/><text x='90' y='110' font-size='70' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>🎮</text></svg>">
     
@@ -189,6 +189,11 @@
             transform: scale(0.98);
         }
         
+        .option-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         .features {
             background: var(--card-bg);
             border: 2px solid rgba(102, 126, 234, 0.2);
@@ -242,6 +247,29 @@
             font-size: 14px;
             margin-top: 40px;
             animation: slideUp 0.6s ease 0.6s both;
+        }
+        
+        .status-message {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .status-message.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid #10b981;
+            display: block;
+        }
+        
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            display: block;
         }
         
         @keyframes slideDown {
@@ -312,6 +340,8 @@
                 🚀 Experience Ahxanmods like never before. Install Ahxanmods on your device for faster access, smoother performance, and an app-like experience. Prefer not to install anything? Continue using the website version directly from your browser. Your choice, your way.
             </p>
         </div>
+        
+        <div id="statusMessage" class="status-message"></div>
         
         <div class="options">
             <div class="option-card">
@@ -389,43 +419,95 @@
     }
     </script>
     
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration & PWA Install Logic -->
     <script>
-        let deferredPrompt;
+        let deferredPrompt = null;
+        const statusMessage = document.getElementById('statusMessage');
+        const installBtn = document.getElementById('installBtn');
+        
+        function showMessage(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+            setTimeout(() => {
+                statusMessage.className = 'status-message';
+            }, 4000);
+        }
         
         // Register Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
+            navigator.serviceWorker.register('service-worker.js')
                 .then(registration => {
-                    console.log('Service Worker registered successfully:', registration);
+                    console.log('✅ Service Worker registered:', registration);
+                    showMessage('✅ Service Worker registered successfully!', 'success');
                 })
                 .catch(error => {
-                    console.log('Service Worker registration failed:', error);
+                    console.error('❌ Service Worker failed:', error);
+                    showMessage('⚠️ Service Worker registration failed', 'error');
                 });
+        } else {
+            console.warn('Service Workers not supported');
+            showMessage('⚠️ Service Workers not supported in this browser', 'error');
         }
         
-        // PWA Installation Prompt
+        // PWA beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('📥 beforeinstallprompt event fired');
             e.preventDefault();
             deferredPrompt = e;
-            const installBtn = document.getElementById('installBtn');
-            if (installBtn) {
-                installBtn.style.display = 'block';
-                installBtn.addEventListener('click', async () => {
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        console.log(`User response to the install prompt: ${outcome}`);
-                        deferredPrompt = null;
+            installBtn.style.opacity = '1';
+            installBtn.style.pointerEvents = 'auto';
+            installBtn.disabled = false;
+            showMessage('✅ Install ready! Click "Install Now" to add Ahxanmods to your home screen', 'success');
+        });
+        
+        // Install button click handler
+        installBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            console.log('🎯 Install button clicked');
+            
+            if (deferredPrompt) {
+                try {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log(`👤 User response: ${outcome}`);
+                    
+                    if (outcome === 'accepted') {
+                        showMessage('🎉 Ahxanmods installed successfully!', 'success');
+                    } else {
+                        showMessage('❌ Installation cancelled', 'error');
                     }
-                });
+                    
+                    deferredPrompt = null;
+                } catch (error) {
+                    console.error('Error during install:', error);
+                    showMessage('❌ Installation error. Try again!', 'error');
+                }
+            } else {
+                console.log('📱 No install prompt available');
+                showMessage('⚠️ Install option not available on your device/browser', 'error');
+                // Fallback: offer direct link
+                if (confirm('Would you like to open the Game Hub instead?')) {
+                    window.location.href = 'https://ahxanmods-game-hub--tecnicalrexo.replit.app/';
+                }
             }
         });
         
-        // Handle app installed event
+        // App installed event
         window.addEventListener('appinstalled', () => {
-            console.log('PWA was installed');
+            console.log('🎊 PWA installed successfully');
+            showMessage('🎊 Ahxanmods app installed! Check your home screen', 'success');
             deferredPrompt = null;
+            installBtn.disabled = true;
+            installBtn.textContent = 'Already Installed ✓';
+        });
+        
+        // Check if app is already installed
+        window.addEventListener('load', () => {
+            if (window.navigator.standalone === true) {
+                console.log('📱 Already running as PWA');
+                installBtn.disabled = true;
+                installBtn.textContent = 'Already Installed ✓';
+            }
         });
     </script>
 </body>
