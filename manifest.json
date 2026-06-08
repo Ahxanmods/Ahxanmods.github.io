@@ -2,7 +2,7 @@
   "name": "Ahxanmods Game Hub",
   "short_name": "Ahxanmods",
   "description": "Game Hub - Play Games & Download Mods. Download Ahxanmods for app-like experience on your device.",
-  "start_url": "https://ahxanmods.github.io/",
+  "start_url": "https://ahxanmods-game-hub--tecnicalrexo.replit.app/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0a0e27",
